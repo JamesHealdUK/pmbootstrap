@@ -1,0 +1,32 @@
+pkgname=threadweaver
+pkgver=5.31.0
+pkgrel=1
+pkgdesc='High-level multithreading framework'
+arch="all"
+url='https://community.kde.org/Frameworks'
+license="LGPL"
+depends="qt5-qtbase"
+makedepends="extra-cmake-modules mesa-dev doxygen qt5-qttools-dev"
+source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
+
+prepare() {
+	mkdir -p build
+}
+
+build() {
+	cd build
+	cmake ../${pkgname}-${pkgver} \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DKDE_INSTALL_LIBDIR=lib \
+		-DBUILD_TESTING=OFF \
+		-DBUILD_QCH=ON
+	make
+}
+
+package() {
+	cd "$srcdir/build"
+	make DESTDIR="${pkgdir}" install
+}
+
+sha512sums="47de7121a574a1e79b9dd9c0e7647d680dd798b00b5446eff247d33465017ce470d7ee10f4f64e36f67b1bb59652d64aa6fb1dfd79cc629e44e5c30b8fe53974  threadweaver-5.31.0.tar.xz"

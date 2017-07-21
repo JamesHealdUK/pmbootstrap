@@ -1,0 +1,32 @@
+pkgname=kxmlgui
+pkgver=5.31.0
+pkgrel=1
+pkgdesc='User configurable main windows'
+arch="all"
+url='https://community.kde.org/Frameworks'
+license="LGPL"
+depends="kglobalaccel ktextwidgets"
+makedepends="extra-cmake-modules python mesa-dev doxygen qt5-qttools-dev ktextwidgets kglobalaccel"
+source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
+
+prepare() {
+	mkdir -p build
+}
+
+build() {
+	cd build
+	cmake ../${pkgname}-${pkgver} \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DKDE_INSTALL_LIBDIR=lib \
+		-DKDE_INSTALL_LIBEXECDIR=lib \
+		-DBUILD_TESTING=OFF \
+		-DBUILD_QCH=ON
+	make
+}
+
+package() {
+	cd "$srcdir/build"
+	make DESTDIR="${pkgdir}" install
+}
+sha512sums="625c313c58fa61c53a1a1305fc2bb5f671a815658ef22eb6f15eb4979cad7767d08066609caa800a8306e0a74af654181627bcee2ad2240f2f43eb98b2c8b46e  kxmlgui-5.31.0.tar.xz"

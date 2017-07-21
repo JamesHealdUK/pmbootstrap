@@ -1,0 +1,38 @@
+pkgname=kio
+pkgver=5.31.0
+pkgrel=1
+pkgdesc='Resource and network access abstraction'
+arch="all"
+url='https://community.kde.org/Frameworks'
+license="LGPL"
+depends="solid kjobwidgets libxslt desktop-file-utils knotifications"
+makedepends="extra-cmake-modules kdoctools python doxygen qt5-qttools-dev kconfig kdbusaddons kservice solid kbookmarks kjobwidgets knotifications"
+source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz
+		D6597.patch"
+subpackages="$pkgname-doc $pkgname-dev"
+
+prepare() {
+	mkdir -p build
+
+	cd $pkgname-$pkgver
+	patch -p1 < ../D6597.patch
+}
+
+build() {
+	cd "$srcdir/build"
+	cmake ../${pkgname}-${pkgver} \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DKDE_INSTALL_LIBDIR=lib \
+		-DKDE_INSTALL_LIBEXECDIR=lib \
+		-DBUILD_TESTING=OFF \
+		-DBUILD_QCH=ON
+	make
+}
+
+package() {
+	cd "$srcdir/build"
+	make DESTDIR="${pkgdir}" install
+}
+sha512sums="6e8f1cd8c06c132eee5e90734af58dfbc62dd5691a405c6547b6d544f9c622a5e914eb916652bc97b9002fec8ab2b3c5e59785f3d3a184dd537e9b8f490e3b38  kio-5.31.0.tar.xz
+142824de5d0c8f93fa8ea145679b5185e736ab4a71053884ac560cfb5f7e4e3a5cc9b939576faa8b6820c9f7920de0e50e344ffacb607cfeb2a3c4828ed7e4e4  D6597.patch"

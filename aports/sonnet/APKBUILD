@@ -1,0 +1,31 @@
+pkgname=sonnet
+pkgver=5.31.0
+pkgrel=1
+pkgdesc='Spelling framework for Qt5'
+arch="all"
+url='https://community.kde.org/Frameworks'
+license="LGPL"
+depends="qt5-qtbase"
+makedepends="extra-cmake-modules qt5-qttools-dev doxygen"
+source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
+
+prepare() {
+	mkdir -p build
+}
+
+build() {
+	cd build
+	cmake ../${pkgname}-${pkgver} \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DKDE_INSTALL_LIBDIR=lib \
+		-DBUILD_TESTING=OFF \
+		-DBUILD_QCH=ON
+	make
+}
+
+package() {
+	cd "$srcdir/build"
+	make DESTDIR="${pkgdir}" install
+}
+sha512sums="e5c5c985beb5d1a60e96b252d756e7310926f643bbc2bf055e507aeeafc496fb033aa501cd08b89c628f71f736ab31fc29986a069c737e52fd5f4d0855a456b4  sonnet-5.31.0.tar.xz"

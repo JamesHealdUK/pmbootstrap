@@ -1,0 +1,31 @@
+pkgname=knotifications
+pkgver=5.31.0
+pkgrel=0
+pkgdesc='Abstraction for system notifications'
+arch="all"
+url='https://community.kde.org/Frameworks'
+license="LGPL"
+depends="phonon-dev kwindowsystem kconfig kcodecs kcoreaddons"
+makedepends="extra-cmake-modules qt5-qttools-dev python doxygen phonon-dev dbus-libs qt5-x11extras-dev kwindowsystem kconfig kcodecs kcoreaddons"
+source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
+
+prepare() {
+	mkdir -p build
+}
+
+build() {
+	cd build
+	cmake ../${pkgname}-${pkgver} \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DKDE_INSTALL_LIBDIR=lib \
+		-DBUILD_TESTING=OFF \
+		-DBUILD_QCH=ON
+	make
+}
+
+package() {
+	cd "$srcdir/build"
+	make DESTDIR="${pkgdir}" install
+}
+sha512sums="25659b9b82e1411417b26e4ea8a2629f18fb5f12f08cb19e10189b94a79aafed1e6ec3c91fc5567794824e48409dbe0b9d0e12ef33ad3225daebbc6c9b884679  knotifications-5.31.0.tar.xz"

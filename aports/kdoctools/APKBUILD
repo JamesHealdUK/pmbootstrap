@@ -1,0 +1,34 @@
+pkgname=kdoctools
+pkgver=5.31.0
+pkgrel=1
+pkgdesc='Documentation generation from docbook'
+arch="all"
+url='https://community.kde.org/Frameworks'
+license="LGPL"
+depends="karchive docbook-xsl"
+depends_dev="karchive docbook-xsl libxslt-dev libxml2-dev"
+makedepends="$depends_dev extra-cmake-modules ki18n python perl-uri"
+options="staticlibs"
+source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
+subpackages="$pkgname-doc $pkgname-lang"
+
+prepare() {
+	mkdir -p build
+}
+
+build() {
+	cd build
+	cmake ../${pkgname}-${pkgver} \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DKDE_INSTALL_LIBDIR=lib \
+		-DBUILD_TESTING=OFF
+	make
+}
+
+package() {
+	cd "$srcdir/build"
+	make DESTDIR="${pkgdir}" install
+}
+
+sha512sums="1efd7a794972e99405cb79603a867afcf425d8af67a7ddd1c574636f527a696e1dce1e2da2172dc064d02f9725aaaddd796513d968673e7314dcbd47d548f4bb  kdoctools-5.31.0.tar.xz"

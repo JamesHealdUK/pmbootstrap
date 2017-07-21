@@ -1,0 +1,33 @@
+pkgname=kplotting
+pkgver=5.31.0
+pkgrel=1
+pkgdesc='Lightweight plotting framework'
+arch="all"
+url='https://community.kde.org/Frameworks'
+license="LGPL"
+depends="qt5-qtbase"
+makedepends="extra-cmake-modules mesa-dev doxygen qt5-qttools-dev"
+groups="kf5"
+source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
+
+prepare() {
+	mkdir -p build
+}
+
+build() {
+	cd "$srcdir/build"
+	cmake ../${pkgname}-${pkgver} \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DKDE_INSTALL_LIBDIR=lib \
+		-DBUILD_TESTING=OFF \
+		-DBUILD_QCH=ON
+	make
+}
+
+package() {
+	cd "$srcdir/build"
+	make DESTDIR="${pkgdir}" install
+}
+
+sha512sums="94e9e820b5a1dcf1954fe59ca57f15289d84222542353f558ce2aad936fc73f8c966715b00aab3a20ff9788e36aa194dcb5a5e5e4df40c0165c41e3e0e01f74e  kplotting-5.31.0.tar.xz"
