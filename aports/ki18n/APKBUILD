@@ -10,6 +10,7 @@ makedepends="extra-cmake-modules python qt5-qtdeclarative-dev py3-qt5 clang doxy
 optdepends="python-pykf5: to use the Python 3 bindings
 		python2-pykf5: to use the Python 2 bindings"
 source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
+subpackages="$pkgname-doc"
 
 prepare() {
 	mkdir -p "$srcdir/build"

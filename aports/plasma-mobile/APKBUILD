@@ -1,0 +1,36 @@
+pkgname=plasma-mobile
+pkgver=5726.978b03c
+pkgrel=1
+pkgdesc="Plasma Mobile"
+arch="all"
+url="https://community.kde.org/Plasma/Mobile"
+license="GPL3"
+depends="plasma-workspace"
+makedepends="extra-cmake-modules baloo kdoctools plasma-workspace"
+provides="plasma-mobile"
+source="$pkgname-$pkgver.tar.gz
+		$install"
+install="$pkgname.post-install
+		 $pkgname.post-upgrade
+		 $pkgname.post-deinstall"
+
+prepare() {
+	mkdir -p build
+}
+
+build() {
+	cd build
+	cmake ../$pkgname \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DBUILD_TESTING=OFF \
+		-DLIB_INSTALL_DIR=lib \
+		-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
+		-DCMAKE_BUILD_TYPE=Release
+	make
+}
+
+package() {
+	cd "$srcdir/build"
+	make DESTDIR="$pkgdir/" install
+}
+sha512sums="7eaf9f324b81dd8e4c252bf0e8502627e59945a9d75d1ac4777f5babaed47d3b7fdc7335e23b1c1a2da2625204c537331f942fea8a5c45d7cd5fc957f486f2dd  plasma-mobile-5726.978b03c.tar.gz"
