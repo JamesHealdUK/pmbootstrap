@@ -4,7 +4,7 @@ if [ ! -d "aports" ]; then
     exit 1
 fi
 
-for i in cross device main ui-plasma-mobile unmaintained; do
+for i in cross device kde main unmaintained; do
     mkdir -p aports_new/"$i"
 done
 
