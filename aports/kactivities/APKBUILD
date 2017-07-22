@@ -1,5 +1,5 @@
 pkgname=kactivities
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 arch="all"
 pkgdesc="Core components for the KDE's Activities"
@@ -30,4 +30,4 @@ package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="4e036d80f44d59d9b0244a293a4dfe0bd8e2c35ebb1ab62a3e581a6b31a621d5e63207bb9fc1c06618231d2e191595aeeeb3f85ea3e4cf056b167edcb632cd85  kactivities-5.31.0.tar.xz"
+sha512sums="1fdbf1b55cf8525dc53454f6c1d9eacb4eb502b68cb08267e2baf03ac721048b316fc7af253d23258274200971dd840c8f79507c28662b2740e12993a5dd7b96  kactivities-5.36.0.tar.xz"

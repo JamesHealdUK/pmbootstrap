@@ -1,5 +1,5 @@
 pkgname=kcoreaddons
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Addons to QtCore'
 arch="all"
@@ -22,10 +22,12 @@ build() {
 		-DBUILD_TESTING=OFF \
 		-DBUILD_QCH=ON
 		make
+
+	# -D_KDE4_DEFAULT_HOME_POSTFIX=4 \
 }
 
 package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="64f1245eb51cb7f5ab96fdf44da2041fdde70494ce5a19d7ab1dde43826a92c67fb8c45446e691480fa2034ca4c680d111e00dcd8724f6550b6e6680124f2f9b  kcoreaddons-5.31.0.tar.xz"
+sha512sums="2500c8df07254e601535edfe296aed82b08897e2fb663ea2c13ad37ae838180ec41603629ea5fc79a3c55fc0f466f5d0e8a498c42ab4132d7d509a24ed1b3d42  kcoreaddons-5.36.0.tar.xz"

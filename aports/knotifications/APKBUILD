@@ -1,6 +1,6 @@
 pkgname=knotifications
-pkgver=5.31.0
-pkgrel=0
+pkgver=5.36.0
+pkgrel=1
 pkgdesc='Abstraction for system notifications'
 arch="all"
 url='https://community.kde.org/Frameworks'
@@ -28,4 +28,4 @@ package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="25659b9b82e1411417b26e4ea8a2629f18fb5f12f08cb19e10189b94a79aafed1e6ec3c91fc5567794824e48409dbe0b9d0e12ef33ad3225daebbc6c9b884679  knotifications-5.31.0.tar.xz"
+sha512sums="fdda7947eeb52e3212318daf5d31cd4d3279ed8c6960c344de8c9c23baa24b399127a652f92e7b75b28550b3a985aec849f563d7a572f029e9321e3ad9d55c2b  knotifications-5.36.0.tar.xz"

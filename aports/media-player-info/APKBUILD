@@ -1,6 +1,6 @@
 pkgname=media-player-info
 pkgver=22
-pkgrel=2
+pkgrel=1
 pkgdesc="Data files describing media player capabilities, for post-HAL systems"
 arch="noarch"
 license="BSD"

@@ -1,5 +1,5 @@
 pkgname=kjs
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Support for JS scripting in applications'
 arch="all"
@@ -28,4 +28,4 @@ package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="a4e648470a8b22f1107045c7dda4ad3fa4c8f2a427a55d588974f07ec8c1b5232ad42f7f58bf58012a92cebc9599744f7bd50f67beeab492dbc7ab2eb9968ef4  kjs-5.31.0.tar.xz"
+sha512sums="cccb2366f3080751c12a2e933460a9ddc2737033c7a6023069656bb6829932773be572ff21677dca2db7f4604aeb36b5a7bf6f8132575e6d78b74cced9e146ca  kjs-5.36.0.tar.xz"

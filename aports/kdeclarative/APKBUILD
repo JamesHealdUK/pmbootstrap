@@ -1,12 +1,13 @@
 pkgname=kdeclarative
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Provides integration of QML and KDE Frameworks'
 arch="all"
 url='https://community.kde.org/Frameworks'
 license="LGPL"
 depends="kio kpackage libepoxy"
-makedepends="extra-cmake-modules python doxygen qt5-qttools-dev kpackage"
+depends_dev="kconfig kiconthemes kio-dev"
+makedepends="$depends_dev extra-cmake-modules python doxygen qt5-qttools-dev kpackage"
 source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
 
 prepare() {
@@ -28,4 +29,4 @@ package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="472bfdd00d67f2bec7ddb0b32d3b6ae1829da799b4b1fbcd9992880b7167bb65a37b1666ca02b62afe9cb288cbedd4fd492cb70e2cc45520afb5a46482b1fea8  kdeclarative-5.31.0.tar.xz"
+sha512sums="ca23c17bf46c7618b71e24dcf51c7bdb6f268e8eb6db9d25d144e8521988f605c17cce961abaf5815ffb2d998b10b0bce50f3e2707f49685ffb0b261a072ac0a  kdeclarative-5.36.0.tar.xz"

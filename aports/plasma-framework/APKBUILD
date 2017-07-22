@@ -1,5 +1,5 @@
 pkgname=plasma-framework
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=2
 pkgdesc='Plasma library and runtime components based upon KF5 and Qt5'
 arch="all"
@@ -29,4 +29,4 @@ package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="f1c12960d60961132c67964e657d05eac45436d24a340b5592df001d40ef203ad47082a3495875f3d648c69f8e422c48f366e17027d152bfceeaede3afa6f599  plasma-framework-5.31.0.tar.xz"
+sha512sums="8d2007967cb058782c2c7ce188a6901a7f28bf2fa50ef77d2925d82542f538cf5b751d2fff3f812bf3d6cf96e744f1744844b89e0e68927c0bbbc9fbd1d9c156  plasma-framework-5.36.0.tar.xz"

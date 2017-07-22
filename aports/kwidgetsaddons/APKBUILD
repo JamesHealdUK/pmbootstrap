@@ -1,5 +1,5 @@
 pkgname=kwidgetsaddons
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Addons to QtWidgets'
 arch="all"
@@ -30,4 +30,4 @@ package() {
 	make DESTDIR="${pkgdir}" install
 }
 
-sha512sums="ee9112963732064669edeaea98ce1f3ea773486401ca35deec05d624c8bc50b7047eeecce10e13dc5f8c282461fe0b1316eaa416dd25e7bc99d7e53e21e6cde7  kwidgetsaddons-5.31.0.tar.xz"
+sha512sums="f1b5d2bd98217b8db995977f2cba186a19c3ad9f7fcbff3952507fe2fcfe0ca4c6774249e0e3fa7b048d55f797916ecb09f74b3c22f6306ef281452ee3287ff3  kwidgetsaddons-5.36.0.tar.xz"

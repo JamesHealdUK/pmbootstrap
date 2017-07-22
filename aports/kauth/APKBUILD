@@ -1,12 +1,13 @@
 pkgname=kauth
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Abstraction to system policy and authentication features'
 arch="all"
 url='https://community.kde.org/Frameworks'
 license="LGPL"
-depends="kcoreaddons polkit-qt5"
-makedepends="extra-cmake-modules qt5-qttools-dev clang py3-qt5 doxygen polkit-qt5"
+depends="polkit-qt5"
+depends_dev="kcoreaddons"
+makedepends="$depends_dev extra-cmake-modules qt5-qttools-dev clang py3-qt5 doxygen polkit-qt5"
 source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
 
 prepare() {
@@ -29,4 +30,4 @@ package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="3ae88b0d39b0e35cc2a7da4bafc87bfe075119313834afe73cfdeb121d0ecd0939edb88346a78a0bb57e0054f69541d0cc6fb8a13adc530920c9ec3be185036c  kauth-5.31.0.tar.xz"
+sha512sums="5113c0943cdaa8f9fce60a62fbfabcf666eafc251bee4faf141aac23362e6c317ce8b3c0edad86380309bccf8cbe3f211db6c252bd3681aaf019280a51d9ea2a  kauth-5.36.0.tar.xz"

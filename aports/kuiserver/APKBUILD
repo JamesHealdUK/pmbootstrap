@@ -1,0 +1,35 @@
+pkgbase=plasma-workspace
+pkgname=kuiserver
+pkgver=5.10.4
+pkgrel=1
+pkgdesc='KDE Progress Info UI server'
+arch="all"
+url='https://www.kde.org/workspaces/plasmadesktop/'
+license="LGPL"
+depends="kjsembed knotifyconfig libxdamage libksysguard ktexteditor libqalculate
+         qt5-qttools kde-cli-tools xorg-xrdb xorg-xsetroot kactivitymanagerd
+         xorg-xmessage xorg-xprop milou prison kwin plasma-integration kdelibs4support
+		 kxmlgui"
+makedepends="extra-cmake-modules kdoctools gpsd krunner networkmanager-qt kdesignerplugin"
+source="https://download.kde.org/stable/plasma/${pkgver}/${pkgbase}-${pkgver}.tar.xz"
+
+prepare() {
+	mkdir -p build
+}
+
+build() {
+	cd build
+	cmake ../$pkgbase-$pkgver \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DKDE_INSTALL_LIBDIR=lib \
+		-DKDE_INSTALL_LIBEXECDIR=lib \
+		-DBUILD_TESTING=OFF
+	make
+}
+
+package() {
+	cd build/kuiserver
+	make DESTDIR="$pkgdir" install
+}
+sha512sums="4bfcb18f73c4df0b4342e00b94ca375cc0ec1968e0f30ca8e14366dae5723ba9491fd073fc4408a9ae64c2efa52e72efd7e474e15b0cc4c65e1d42f1fe57170a  plasma-workspace-5.10.4.tar.xz"

@@ -1,5 +1,5 @@
 pkgname=ktextwidgets
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Advanced text editing widgets'
 arch="all"
@@ -28,4 +28,4 @@ package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="48313208f9618288a5dde3ec1c5223032c513507d5536bc722a9b4c20290dba3594b461be1a3841636435a9407a9a7110e256478f0a258bf5832084fa0a9b079  ktextwidgets-5.31.0.tar.xz"
+sha512sums="33d471601b76424331d23a0bdd1afcdccc2c999acdfc8faad45d50932405b09b680939bae4274182399bd90cc0553ec576b5e4e963714e504b9cd498d331ef55  ktextwidgets-5.36.0.tar.xz"

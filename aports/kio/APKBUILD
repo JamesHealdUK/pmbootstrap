@@ -1,5 +1,5 @@
 pkgname=kio
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Resource and network access abstraction'
 arch="all"
@@ -34,5 +34,5 @@ package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="6e8f1cd8c06c132eee5e90734af58dfbc62dd5691a405c6547b6d544f9c622a5e914eb916652bc97b9002fec8ab2b3c5e59785f3d3a184dd537e9b8f490e3b38  kio-5.31.0.tar.xz
+sha512sums="d156a0b907bae38bcde63be847f96199fc926d24cd4a2d3c7a3bb963e2d1fe8db3c2bf3b4c32eb90017349b6eefb633c6c54313427f657c2b79e2b2970af8c72  kio-5.36.0.tar.xz
 142824de5d0c8f93fa8ea145679b5185e736ab4a71053884ac560cfb5f7e4e3a5cc9b939576faa8b6820c9f7920de0e50e344ffacb607cfeb2a3c4828ed7e4e4  D6597.patch"

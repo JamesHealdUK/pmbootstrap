@@ -1,5 +1,5 @@
 pkgname=ki18n
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Advanced internationalization framework'
 arch="all"
@@ -30,4 +30,4 @@ package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="cd25acfae1ff9d47290dc9c1b4e247aac1d3d5c69dbd3205272752a99fde30738bf7a6e99ef4ae61de16205c168739c4a8307c15568b28634d5be5b941e2e31b  ki18n-5.31.0.tar.xz"
+sha512sums="b2de34a5320d76a565e29a4f6649520351c14bbb19ff1baea1a5ca38c4d791735d4bdd2a0baf90692aba3d34b8b7c8e8518c300c619e0cc7d26765795a78bc0f  ki18n-5.36.0.tar.xz"

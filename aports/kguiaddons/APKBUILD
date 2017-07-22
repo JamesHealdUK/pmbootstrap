@@ -1,5 +1,5 @@
 pkgname=kguiaddons
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Addons to QtGui'
 arch="all"
@@ -29,4 +29,4 @@ package() {
 	make DESTDIR="${pkgdir}" install
 }
 
-sha512sums="ccc78ebf8b1ef60aa600b9f3286f89de85347cabd4b7650c5ccf530639e077ec310070812360b3c3df4ccea403f83fa35f322e67e822b2658316fb3f52082e5b  kguiaddons-5.31.0.tar.xz"
+sha512sums="851836700fc18f595c8c10a745e645a8d14951e307ebb474f68e481a23ecba9e15755da89ec4b53ee98164201a0ab6180125d0626348c47bb3187b9d13b8d413  kguiaddons-5.36.0.tar.xz"

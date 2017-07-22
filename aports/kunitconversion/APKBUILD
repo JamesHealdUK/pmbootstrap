@@ -1,5 +1,5 @@
 pkgname=kunitconversion
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Support for unit conversion'
 arch="all"
@@ -29,4 +29,4 @@ package() {
 	make DESTDIR="${pkgdir}" install
 }
 
-sha512sums="c39d2c2a55ebc51a1e5100b6a9b0914c5b986f1be3c739114435790a0024e2e587d9b1bbd6b09f72ad5681c2ba67a841c3e1ff64ce0abb93de4b336dd9358fd2  kunitconversion-5.31.0.tar.xz"
+sha512sums="10c7cf215cb0c02c22aaa1721e996103712adca770daa2d8da8ddd20c5c78ae3bb847f8e42079afce566d0a807b5aafa45cbb140e3d989ef8e5e6af63936291f  kunitconversion-5.36.0.tar.xz"

@@ -1,5 +1,5 @@
 pkgname=kplotting
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Lightweight plotting framework'
 arch="all"
@@ -30,4 +30,4 @@ package() {
 	make DESTDIR="${pkgdir}" install
 }
 
-sha512sums="94e9e820b5a1dcf1954fe59ca57f15289d84222542353f558ce2aad936fc73f8c966715b00aab3a20ff9788e36aa194dcb5a5e5e4df40c0165c41e3e0e01f74e  kplotting-5.31.0.tar.xz"
+sha512sums="167841df6902e83966e2bba68faca1c9a68a44b2012128d3ce2e1aea1e08e3112c67c64bc2344201f958f9afd0fc35a7e1c232d9caa6deb68ab65be0c787b696  kplotting-5.36.0.tar.xz"

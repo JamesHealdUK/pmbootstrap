@@ -1,12 +1,13 @@
 pkgname=kconfigwidgets
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Widgets for KConfig'
 arch="all"
 url='https://community.kde.org/Frameworks'
 license="LGPL"
-depends="kauth kcodecs kconfig kguiaddons ki18n kwidgetsaddons"
-makedepends="extra-cmake-modules kdoctools python mesa-dev clang py3-qt5 doxygen qt5-qttools-dev kauth kguiaddons kwidgetsaddons kcodecs"
+depends="kauth kcodecs kguiaddons ki18n kwidgetsaddons"
+depends_dev="kconfig"
+makedepends="$depends_dev extra-cmake-modules kdoctools python mesa-dev clang py3-qt5 doxygen qt5-qttools-dev kauth kguiaddons kwidgetsaddons kcodecs"
 source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
 subpackages="$pkgname-doc"
 
@@ -29,4 +30,4 @@ package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="a4eab06673683a49a59e7677b4491d2a25e6e146e1dcb556f90ef3778319bec948e937c37e15aa0fcb7053ff2089e2df5d18c82fd4e141dea110f9cef57978c4  kconfigwidgets-5.31.0.tar.xz"
+sha512sums="2068585904912da4bf7893d893ed552f1138a23d502f0f2fd480fc744fda9986e99a915e1499dd443de09dd3f06b097bc73ab71c5ada6bdc4164ca583e01e5ff  kconfigwidgets-5.36.0.tar.xz"

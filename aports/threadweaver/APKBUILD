@@ -1,5 +1,5 @@
 pkgname=threadweaver
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='High-level multithreading framework'
 arch="all"
@@ -29,4 +29,4 @@ package() {
 	make DESTDIR="${pkgdir}" install
 }
 
-sha512sums="47de7121a574a1e79b9dd9c0e7647d680dd798b00b5446eff247d33465017ce470d7ee10f4f64e36f67b1bb59652d64aa6fb1dfd79cc629e44e5c30b8fe53974  threadweaver-5.31.0.tar.xz"
+sha512sums="cf52bd157e8e3b19a579e1066648b8d2b9bd3b7c3b06caf448eae94219f7f2c5728fa41c150c3b5bc3c32c400e6ce4f5075fa53f7ccfa6f6dc5fd970edcb67a8  threadweaver-5.36.0.tar.xz"

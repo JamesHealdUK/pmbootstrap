@@ -1,12 +1,12 @@
 pkgname=knewstuff
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Support for downloading application assets from the network'
 arch="all"
 url='https://community.kde.org/Frameworks'
 license="LGPL"
 depends="kio"
-makedepends="extra-cmake-modules python doxygen qt5-qttools-dev"
+makedepends="extra-cmake-modules python doxygen qt5-qttools-dev attica-qt5"
 source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
 
 prepare() {
@@ -28,4 +28,4 @@ package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="f3a50843a0fcfee482702124a0749c93c5103e32395c4fd8c52b5cfe3b93ed56c4cce1d51455b474323665caa22f2bb385262421c3b706c0f052a60eb0af4563  knewstuff-5.31.0.tar.xz"
+sha512sums="b90c7cdefdc4c1f3ef92798214fedf1025a6115827426bb573b531579997d432938e73399f74ea2e4579f51daebddeb8aa2e644cfbea6875fc8bedb84a95475e  knewstuff-5.36.0.tar.xz"

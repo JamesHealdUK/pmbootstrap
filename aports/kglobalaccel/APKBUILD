@@ -1,5 +1,5 @@
 pkgname=kglobalaccel
-pkgver=5.31.0
+pkgver=5.36.0
 pkgrel=1
 pkgdesc='Add support for global workspace shortcuts'
 arch="all"
@@ -28,4 +28,4 @@ package() {
 	cd "$srcdir/build"
 	make DESTDIR="${pkgdir}" install
 }
-sha512sums="7b50da8b61fb3816a9cbd1d30434c80b5559b9d89964119d756b19300be826d3ac3aa9afd30f339f499b355cbd0213858195f3c9fd3843cd445dedc196995a7e  kglobalaccel-5.31.0.tar.xz"
+sha512sums="6a0916af3d2d5378fd97d93dcd4fe1f11ee0b4e8797a8f191aa424c1ea28c8c5844618e65128c9d9f3a3ddc8a4cd6e3bd83dd18d36603eb8c45eca69f4be8e3c  kglobalaccel-5.36.0.tar.xz"
