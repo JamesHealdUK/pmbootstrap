@@ -10,12 +10,12 @@ makedepends="extra-cmake-modules doxygen qt5-qttools-dev"
 source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
 
 prepare() {
-	mkdir -p build
+	mkdir -p $srcdir/build
 }
 
 build() {
-	cd build
-	cmake ../${pkgname}-${pkgver} \
+	cd $srcdir/build
+	cmake "$srcdir"/${pkgname}-${pkgver} \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DKDE_INSTALL_LIBDIR=lib \
@@ -25,7 +25,7 @@ build() {
 }
 
 package() {
-	cd "$srcdir/build"
+	cd $srcdir/build
 	make DESTDIR="${pkgdir}" install
 }
 sha512sums="6a0916af3d2d5378fd97d93dcd4fe1f11ee0b4e8797a8f191aa424c1ea28c8c5844618e65128c9d9f3a3ddc8a4cd6e3bd83dd18d36603eb8c45eca69f4be8e3c  kglobalaccel-5.36.0.tar.xz"

@@ -8,14 +8,15 @@ license="LGPL"
 depends="kio"
 makedepends="extra-cmake-modules python doxygen qt5-qttools-dev kio"
 source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
+subpackages="$pkgname-doc $pkgname-lang"
 
 prepare() {
-	mkdir -p build
+	mkdir -p $srcdir/build
 }
 
 build() {
-	cd build
-	cmake ../${pkgname}-${pkgver} \
+	cd $srcdir/build
+	cmake "$srcdir"/${pkgname}-${pkgver} \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DKDE_INSTALL_LIBDIR=lib \
@@ -25,7 +26,7 @@ build() {
 }
 
 package() {
-	cd "$srcdir/build"
+	cd $srcdir/build
 	make DESTDIR="${pkgdir}" install
 }
 sha512sums="a13efcaa20a28356ea7258f0d2155c92a74691047d3cce67022edb2542b9fbba7c7adc407e42549d8d828e55aebbb3f196e963fd8a228d44fae33c6389acd377  kparts-5.36.0.tar.xz"

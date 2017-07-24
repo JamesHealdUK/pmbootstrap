@@ -11,12 +11,12 @@ groups="plasma"
 source="https://download.kde.org/stable/plasma/$pkgver/$pkgname-$pkgver.tar.xz"
 
 prepare() {
-	mkdir -p "$srcdir/build"
+	mkdir -p $srcdir/build
 }
 
 build() {
-	cd "$srcdir/build"
-	cmake ../$pkgname-$pkgver \
+	cd $srcdir/build
+	cmake "$srcdir"/$pkgname-$pkgver \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DKDE_INSTALL_LIBDIR=lib \
@@ -26,7 +26,7 @@ build() {
 }
 
 package() {
-	cd "$srcdir/build"
+	cd $srcdir/build
 	make DESTDIR="$pkgdir" install
 }
 sha512sums="dc0c131d77279d443ce5515fee342e2f18fccd29fe0c7bc11fdfb5ed7ab10d3639bfea06b02a98efc5eee2456cf878e4b4579a0461df2397b5dfd4b0ef259d92  kdecoration-5.10.4.tar.xz"

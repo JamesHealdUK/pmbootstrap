@@ -6,16 +6,17 @@ arch="all"
 url='https://www.kde.org/workspaces/plasmadesktop/'
 license="LGPL"
 depends="kidletime kwayland kdeclarative"
-makedepends="$depends_dev extra-cmake-modules python kdoctools kcmutils libxcursor linux-pam-dev"
+makedepends="extra-cmake-modules python kdoctools kcmutils libxcursor linux-pam-dev"
 source="https://download.kde.org/stable/plasma/$pkgver/$pkgname-$pkgver.tar.xz"
+subpackages="$pkgname-lang"
 
 prepare() {
-	mkdir -p build
+	mkdir -p $srcdir/build
 }
 
 build() {
-	cd build
-	cmake ../$pkgname-$pkgver \
+	cd $srcdir/build
+	cmake "$srcdir"/$pkgname-$pkgver \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DKDE_INSTALL_LIBDIR=lib \
@@ -25,7 +26,7 @@ build() {
 }
 
 package() {
-	cd "$srcdir/build"
+	cd $srcdir/build
 	make DESTDIR="$pkgdir" install
 }
 

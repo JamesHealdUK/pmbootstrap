@@ -8,14 +8,15 @@ license="LGPL"
 depends="kio"
 makedepends="extra-cmake-modules python doxygen qt5-qttools-dev attica-qt5"
 source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
+subpackages="$pkgname-doc $pkgname-lang"
 
 prepare() {
-	mkdir -p build
+	mkdir -p $srcdir/build
 }
 
 build() {
-	cd build
-	cmake ../${pkgname}-${pkgver} \
+	cd $srcdir/build
+	cmake "$srcdir"/${pkgname}-${pkgver} \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DKDE_INSTALL_LIBDIR=lib \
@@ -25,7 +26,7 @@ build() {
 }
 
 package() {
-	cd "$srcdir/build"
+	cd $srcdir/build
 	make DESTDIR="${pkgdir}" install
 }
 sha512sums="b90c7cdefdc4c1f3ef92798214fedf1025a6115827426bb573b531579997d432938e73399f74ea2e4579f51daebddeb8aa2e644cfbea6875fc8bedb84a95475e  knewstuff-5.36.0.tar.xz"

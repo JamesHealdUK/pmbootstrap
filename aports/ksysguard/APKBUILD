@@ -6,21 +6,21 @@ arch="all"
 url='https://userbase.kde.org/KSysGuard'
 license="LGPL"
 depends="lm_sensors hicolor-icon-theme"
-depends_dev="knewstuff libksysguard kinit"
-makedepends="$depends_dev extra-cmake-modules kdoctools python"
+makedepends="extra-cmake-modules kdoctools python knewstuff libksysguard libksysguard-dev kinit"
 source="https://download.kde.org/stable/plasma/${pkgver}/$pkgname-$pkgver.tar.xz
 		 D6631.patch"
+subpackages="$pkgname-lang"
 
 prepare() {
-	mkdir -p build
+	mkdir -p $srcdir/build
 	
-	cd $pkgname-$pkgver
+	cd "$srcdir"/$pkgname-$pkgver
 	patch -p1 < ../D6631.patch
 }
 
 build() {
-	cd "$srcdir/build"
-	cmake ../${pkgname}-${pkgver} \
+	cd $srcdir/build
+	cmake "$srcdir"/${pkgname}-${pkgver} \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DKDE_INSTALL_LIBDIR=lib \
@@ -29,7 +29,7 @@ build() {
 }
 
 package() {
-	cd "$srcdir/build"
+	cd $srcdir/build
 	make DESTDIR="${pkgdir}" install
 }
 sha512sums="3bcb4730ffca30cadf8838ef196b3ebc40e40460d86d1ba28b1778f7c4dc6bb72a875f9ddc28e4211fa232fbddbad90b6742d6ec88471e907dff8fd9e01a2bab  ksysguard-5.10.4.tar.xz

@@ -10,20 +10,20 @@ makedepends="cmake automoc4 polkit-dev qt5-qtbase-dev"
 source="$pkgname-$pkgver.tar.gz"
 
 prepare() {
-	mkdir build
+	mkdir -p $srcdir/build
 }
 
 build() {
-	cd build
+	cd $srcdir/build
 
-	cmake ../$pkgname \
+	cmake "$srcdir"/$pkgname \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DLIB_DESTINATION=/usr/lib
 	make
 }
 package() {
-	cd "$srcdir/build"
+	cd $srcdir/build
 	make DESTDIR="${pkgdir}" install
 }
 sha512sums="09c3b4788decfde30f19f650997473b5455e70d5d20abc48380c72a7134a5e214ac9aa9083d2ae92b5741fd07feae6a49d933bfb997a9cfc59eb9390397b2c9b  polkit-qt5-0.112.0.tar.gz"

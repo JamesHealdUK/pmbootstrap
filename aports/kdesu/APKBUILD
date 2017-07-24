@@ -11,12 +11,12 @@ source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkg
 subpackages="$pkgname-doc"
 
 prepare() {
-	mkdir -p build
+	mkdir -p $srcdir/build
 }
 
 build() {
-	cd build
-	cmake ../${pkgname}-${pkgver} \
+	cd $srcdir/build
+	cmake "$srcdir"/${pkgname}-${pkgver} \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DKDE_INSTALL_LIBDIR=lib \
@@ -27,7 +27,7 @@ build() {
 }
 
 package() {
-	cd "$srcdir/build"
+	cd $srcdir/build
 	make DESTDIR="${pkgdir}" install
 
 	chmod 0644 $pkgdir/usr/lib/kf5/kdesud # remove suid bit as it's disallowed by Alpine standards due to being a security risk

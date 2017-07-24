@@ -10,12 +10,12 @@ makedepends="extra-cmake-modules qt5-qttools-dev clang py3-qt5 doxygen"
 source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
 
 prepare() {
-	mkdir -p build
+	mkdir -p $srcdir/build
 }
 
 build() {
 	cd build
-	cmake ../${pkgname}-${pkgver} \
+	cmake "$srcdir"/${pkgname}-${pkgver} \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DKDE_INSTALL_LIBDIR=lib \
@@ -27,7 +27,7 @@ build() {
 }
 
 package() {
-	cd "$srcdir/build"
+	cd $srcdir/build
 	make DESTDIR="${pkgdir}" install
 }
 sha512sums="2500c8df07254e601535edfe296aed82b08897e2fb663ea2c13ad37ae838180ec41603629ea5fc79a3c55fc0f466f5d0e8a498c42ab4132d7d509a24ed1b3d42  kcoreaddons-5.36.0.tar.xz"

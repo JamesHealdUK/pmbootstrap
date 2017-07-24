@@ -6,18 +6,17 @@ arch="all"
 url='https://community.kde.org/Frameworks'
 license="LGPL"
 depends="karchive ki18n"
-depends_dev="kcoreaddons"
-makedepends="$depends_dev extra-cmake-modules qt5-qttools-dev python kdoctools doxygen"
+makedepends="extra-cmake-modules qt5-qttools-dev python kdoctools doxygen kcoreaddons"
 source="https://download.kde.org/stable/frameworks/${pkgver%.*}/${pkgname}-${pkgver}.tar.xz"
-subpackages="$pkgname-doc"
+subpackages="$pkgname-doc $pkgname-lang"
 
 prepare() {
-	mkdir -p build
+	mkdir -p $srcdir/build
 }
 
 build() {
-	cd build
-	cmake ../${pkgname}-${pkgver} \
+	cd $srcdir/build
+	cmake "$srcdir"/${pkgname}-${pkgver} \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DKDE_INSTALL_LIBDIR=lib \
@@ -28,7 +27,7 @@ build() {
 }
 
 package() {
-	cd "$srcdir/build"
+	cd $srcdir/build
 	make DESTDIR="${pkgdir}" install
 }
 
