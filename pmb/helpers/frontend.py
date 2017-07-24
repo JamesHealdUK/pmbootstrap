@@ -35,17 +35,35 @@ import pmb.install
 import pmb.parse
 
 
+def _parse_suffix(args):
+    if (args.suffix and (args.rootfs or args.buildroot) or
+       (args.rootfs and args.buildroot)):
+        raise RuntimeError("Please specify only one of the following"
+                           " arguments: --suffix, --rootfs-, --buildroot")
+    if args.rootfs:
+        return "rootfs_" + args.device
+    elif args.buildroot:
+        return "buildroot_" + args.deviceinfo["arch"]
+    elif args.suffix:
+        return args.suffix
+    else:
+        return "native"
+
+
 def aportgen(args):
-    pmb.aportgen.generate(args, args.package)
+    for package in args.packages:
+        pmb.aportgen.generate(args, package)
 
 
 def build(args):
-    pmb.build.package(args, args.package, args.arch, args.force,
-                      args.buildinfo)
+    for package in args.packages:
+        pmb.build.package(args, package, args.arch, args.force,
+                          args.buildinfo)
 
 
 def build_init(args):
-    pmb.build.init(args, args.suffix)
+    suffix = _parse_suffix(args)
+    pmb.build.init(args, suffix)
 
 
 def challenge(args):
@@ -53,12 +71,14 @@ def challenge(args):
 
 
 def checksum(args):
-    pmb.build.checksum(args, args.package)
+    for package in args.packages:
+        pmb.build.checksum(args, package)
 
 
 def chroot(args):
-    pmb.chroot.apk.check_min_version(args, args.suffix)
-    pmb.chroot.root(args, args.command, args.suffix, log=False)
+    suffix = _parse_suffix(args)
+    pmb.chroot.apk.check_min_version(args, suffix)
+    pmb.chroot.root(args, args.command, suffix, log=False)
 
 
 def index(args):

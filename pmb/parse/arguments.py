@@ -145,14 +145,21 @@ def arguments():
     stats = sub.add_parser("stats", help="show ccache stats")
     stats.add_argument("--arch")
 
-    # Action: chroot / build_init / kernel
+    # Action: build_init / chroot
     build_init = sub.add_parser("build_init", help="initialize build"
                                 " environment (usually you do not need to call this)")
     chroot = sub.add_parser("chroot", help="start shell in chroot")
     chroot.add_argument("command", default=["sh"], help="command"
                         " to execute inside the chroot. default: sh", nargs='*')
     for action in [build_init, chroot]:
-        action.add_argument("--suffix", default="native")
+        action.add_argument("--suffix", default=None,
+                            help="Specify any chroot suffix, defaults to"
+                                 " 'native'")
+        action.add_argument("--rootfs", action="store_true",
+                            help="Chroot for the device root file system")
+        action.add_argument("--buildroot", action="store_true",
+                            help="Chroot for building packages for the device "
+                                 "architecture")
 
     # Action: install
     install = sub.add_parser("install", help="set up device specific" +
@@ -166,11 +173,15 @@ def arguments():
     install.add_argument("--no-fde", help="do not use full disk encryption",
                          action="store_false", dest="full_disk_encryption")
 
-    # Action: build / checksum / menuconfig / parse_apkbuild / aportgen
+    # Action: menuconfig / parse_apkbuild
     menuconfig = sub.add_parser("menuconfig", help="run menuconfig on"
                                 " a kernel aport")
-    checksum = sub.add_parser("checksum", help="update aport checksums")
     parse_apkbuild = sub.add_parser("parse_apkbuild")
+    for action in [menuconfig, parse_apkbuild]:
+        action.add_argument("package")
+
+    # Action: build / checksum / aportgen
+    checksum = sub.add_parser("checksum", help="update aport checksums")
     aportgen = sub.add_parser("aportgen", help="generate a package build recipe"
                               " (aport/APKBUILD) based on an upstream aport from Alpine")
     build = sub.add_parser("build", help="create a package for a"
@@ -178,8 +189,8 @@ def arguments():
     build.add_argument("--arch")
     build.add_argument("--force", action="store_true")
     build.add_argument("--buildinfo", action="store_true")
-    for action in [checksum, build, menuconfig, parse_apkbuild, aportgen]:
-        action.add_argument("package")
+    for action in [checksum, build, aportgen]:
+        action.add_argument("packages", nargs="+")
 
     # Action: challenge
     challenge = sub.add_parser("challenge",
