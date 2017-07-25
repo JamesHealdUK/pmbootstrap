@@ -1,4 +1,4 @@
-# APKBUILD loosly based on linux-vanilla aport. Changes:
+# APKBUILD loosley based on linux-vanilla aport. Changes:
 #
 # - Use new kernel config for the postmarketos device support
 # - Package the device tree files
