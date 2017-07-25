@@ -36,10 +36,6 @@ import pmb.parse
 
 
 def _parse_suffix(args):
-    if (args.suffix and (args.rootfs or args.buildroot) or
-       (args.rootfs and args.buildroot)):
-        raise RuntimeError("Please specify only one of the following"
-                           " arguments: --suffix, --rootfs-, --buildroot")
     if args.rootfs:
         return "rootfs_" + args.device
     elif args.buildroot:

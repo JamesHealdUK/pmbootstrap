@@ -152,14 +152,15 @@ def arguments():
     chroot.add_argument("command", default=["sh"], help="command"
                         " to execute inside the chroot. default: sh", nargs='*')
     for action in [build_init, chroot]:
-        action.add_argument("--suffix", default=None,
-                            help="Specify any chroot suffix, defaults to"
-                                 " 'native'")
-        action.add_argument("--rootfs", action="store_true",
+        suffix = action.add_mutually_exclusive_group()
+        suffix.add_argument("--rootfs", action="store_true",
                             help="Chroot for the device root file system")
-        action.add_argument("--buildroot", action="store_true",
+        suffix.add_argument("--buildroot", action="store_true",
                             help="Chroot for building packages for the device "
                                  "architecture")
+        suffix.add_argument("--suffix", default=None,
+                            help="Specify any chroot suffix, defaults to"
+                                 " 'native'")
 
     # Action: install
     install = sub.add_parser("install", help="set up device specific" +
