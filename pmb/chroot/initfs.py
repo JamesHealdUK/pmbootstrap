@@ -46,33 +46,46 @@ def extract(args, flavor, suffix, log_message=False):
     """
     # Extraction folder
     inside = "/tmp/initfs-extracted"
+    inside_extra = "/tmp/initfs-extra-extracted"
     outside = args.work + "/chroot_" + suffix + inside
+    outside_extra = args.work + "/chroot_" + suffix + inside_extra
     if os.path.exists(outside):
         if pmb.helpers.cli.ask(args, "Extraction folder " + outside +
                                " already exists. Do you want to overwrite it?") != "y":
             raise RuntimeError("Aborted!")
         pmb.chroot.root(args, ["rm", "-r", inside], suffix)
+    if os.path.exists(outside_extra):
+        if pmb.helpers.cli.ask(args, "Extraction folder " + outside_extra +
+                               " already exists. Do you want to overwrite it?") != "y":
+            raise RuntimeError("Aborted!")
+        pmb.chroot.root(args, ["rm", "-r", inside_extra], suffix)
 
     # Extraction script (because passing a file to stdin is not allowed
     # in pmbootstrap's chroot/shell functions for security reasons)
     with open(args.work + "/chroot_" + suffix + "/tmp/_extract.sh", "w") as handle:
         handle.write(
             "#!/bin/sh\n"
-            "cd " + inside + " && cpio -i < _initfs\n")
+            "cd " + inside + " && cpio -i < _initfs\n"
+            "cd " + inside_extra + " && cpio -i < _initfs\n")
 
     # Extract
     commands = [["mkdir", "-p", inside],
+                ["mkdir", "-p", inside_extra],
                 ["cp", "/boot/initramfs-" + flavor, inside + "/_initfs.gz"],
+                ["cp", "/boot/initramfs-" + flavor + "-extra", inside_extra + "/_initfs.gz"],
                 ["gzip", "-d", inside + "/_initfs.gz"],
+                ["gzip", "-d", inside_extra + "/_initfs.gz"],
                 ["cat", "/tmp/_extract.sh"],  # for the log
                 ["sh", "/tmp/_extract.sh"],
-                ["rm", "/tmp/_extract.sh", inside + "/_initfs"]
+                ["rm", inside + "/_initfs"],
+                ["rm", inside_extra + "/_initfs"],
+                ["rm", "/tmp/_extract.sh"],
                 ]
     for command in commands:
         pmb.chroot.root(args, command, suffix)
 
     # Return outside path for logging
-    return outside
+    return outside, outside_extra
 
 
 def ls(args, flavor, suffix):
@@ -94,8 +107,9 @@ def frontend(args):
     if action == "build":
         build(args, flavor, suffix)
     elif action == "extract":
-        dir = extract(args, flavor, suffix)
-        logging.info("Successfully extracted to: " + dir)
+        dir, dir_extra = extract(args, flavor, suffix)
+        logging.info("Successfully extracted initramfs to: " + dir)
+        logging.info("Successfully extracted initramfs-extra to: " + dir_extra)
     elif action == "ls":
         ls(args, flavor, suffix)
 
