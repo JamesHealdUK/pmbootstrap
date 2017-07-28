@@ -1,0 +1,27 @@
+pkgname=device-samsung-n7100
+pkgver=1
+pkgrel=6
+pkgdesc="Samsung Galaxy Note II (GSM)"
+url="https://github.com/postmarketOS"
+arch="noarch"
+license="MIT"
+depends="linux-samsung-n7100 mkbootimg"
+makedepends=""
+install=""
+subpackages=""
+source="deviceinfo 90-android.rules"
+options="!check"
+
+build() {
+	return 0
+}
+
+package() {
+	install -D -m644 "$srcdir/deviceinfo" \
+		"$pkgdir/etc/deviceinfo"
+	install -D -m644 "$srcdir"/90-android.rules \
+		"$pkgdir"/etc/udev/rules.d/90-android.rules
+}
+
+sha512sums="cf2ce1eed18afc520dd490b39d586181d53fed72ece38de7b4834a1e0d1b8f6f72ec160a96134c651c7cfd38bd8d2d458c0ec882806026687fcd227be5dc2e44  deviceinfo
+8aead706ddb118a44de7d049f07d10a27e727d17724058d132e4ec4fa73fed29c9ccfe03f02aca459c922ec0fbba24e171fe3c76e33f7c5462631e3dd5506e36  90-android.rules"
