@@ -5,9 +5,14 @@
 #	does not generate modules or dtb files
 # - do not create -dev subpackage (makes no sense without module support)
 #
-# Kernel config based on: arch/arm/configs/lineageos_mako_defconfig
+# Kernel config based on: arch/arm/configs/cyanogenmod_n7100_defconfig
 # Changes:
 # - enable devtmpfs (needed for udev -> touch support in weston)
+# Patches:
+# extdsp_inline.patch: Fix for extern and inline errors on compile
+# fimc_lite.patch: Fix for inline error
+# timeconst_fix.patch: Removed condition for depricated feature in Perl (bug present in Linux 3.9 and under)
+
 
 _vendor=samsung
 _flavor=samsung-n7100
@@ -15,7 +20,7 @@ _hash="5790cd7defee9cb6f9b392af4e3569e51230917a"
 _config="config-${_flavor}.armhf"
 
 pkgname=linux-${_flavor}
-pkgver=3.0.31
+pkgver=3.0.64
 case $pkgver in
 	*.*.*)  _kernver=${pkgver%.*};;
 	*.*) _kernver=$pkgver;;
