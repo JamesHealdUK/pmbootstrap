@@ -14,7 +14,7 @@ _hash="f383838578f56e03687c81ac7d6de12eafbd85f4"
 _config="config-${_flavor}.armhf"
 
 pkgname=linux-${_flavor}
-pkgver=3.4.0
+pkgver=3.10.105
 case $pkgver in
 	*.*.*)  _kernver=${pkgver%.*};;
 	*.*) _kernver=$pkgver;;
