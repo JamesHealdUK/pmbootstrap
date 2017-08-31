@@ -7,6 +7,9 @@
 #
 # Changes:
 # - enable devtmpfs (needed for udev -> touch support in weston)
+# - enabled CONFIG_VT (needed for weston to work)
+# - Added ata2001's refresh rate fix for 60hz (otherwise screen is stuck at 15hz)
+# - Enable generation of dtb
 
 _vendor=lge
 _flavor=lg-lenok
@@ -22,13 +25,13 @@ esac
 pkgrel=4
 arch="armhf"
 pkgdesc="G Watch R kernel"
-url="https://github.com/vt0r/kernvatore-lenok"
+url="https://github.com/Tsunamical/kernel_lge_bass-lenok"
 depends="postmarketos-mkinitfs"
 makedepends="perl sed installkernel bash gmp-dev bc linux-headers elfutils-dev"
 options="!strip !check !tracedeps"
 install=
 source="
-	$pkgname-$_hash.tar.gz::https://github.com/Tsunamical/kernel_lge_bass-lenok/archive/${_hash}.tar.gz
+	$pkgname-$_hash.tar.gz::${url}/archive/${_hash}.tar.gz
 	$_config
 	compiler-gcc6.h
 	refresh_rate.patch
