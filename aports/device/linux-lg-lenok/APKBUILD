@@ -9,7 +9,7 @@
 # - enable devtmpfs (needed for udev -> touch support in weston)
 
 _vendor=lge
-_flavor=lg-g-watch-r
+_flavor=lg-lenok
 _hash="f383838578f56e03687c81ac7d6de12eafbd85f4"
 _config="config-${_flavor}.armhf"
 
@@ -31,6 +31,7 @@ source="
 	$pkgname-$_hash.tar.gz::https://github.com/Tsunamical/kernel_lge_bass-lenok/archive/${_hash}.tar.gz
 	$_config
 	compiler-gcc6.h
+	refresh_rate.patch
 "
 subpackages=""
 license="GPL2"
@@ -99,6 +100,7 @@ package() {
 		"$pkgdir/usr/share/kernel/$_flavor/kernel.release"
 }
 
-sha512sums="4b639fcb5baf60ddc16bca43450d8d7dead6fdfdfab5da13ab2ffc8ae25056610de1aee0abc57737f3d4ac7417685bcefd2303c34b110ce749e1d65abbcf8bee  linux-lg-g-watch-r-f383838578f56e03687c81ac7d6de12eafbd85f4.tar.gz
-2ca943fca8eefeacb0e8677ed3db5c0e27b0a643cb4b54afa0750df1f9accd23a9bd194905cf1cac6a8d1fae3aa480edd24ff737ad7e230de351c30a9400e592  config-lg-g-watch-r.armhf
-d80980e9474c82ba0ef1a6903b434d8bd1b092c40367ba543e72d2c119301c8b2d05265740e4104ca1ac5d15f6c4aa49e8776cb44264a9a28dc551e0d1850dcc  compiler-gcc6.h"
+sha512sums="4b639fcb5baf60ddc16bca43450d8d7dead6fdfdfab5da13ab2ffc8ae25056610de1aee0abc57737f3d4ac7417685bcefd2303c34b110ce749e1d65abbcf8bee  linux-lg-lenok-f383838578f56e03687c81ac7d6de12eafbd85f4.tar.gz
+2ca943fca8eefeacb0e8677ed3db5c0e27b0a643cb4b54afa0750df1f9accd23a9bd194905cf1cac6a8d1fae3aa480edd24ff737ad7e230de351c30a9400e592  config-lg-lenok.armhf
+d80980e9474c82ba0ef1a6903b434d8bd1b092c40367ba543e72d2c119301c8b2d05265740e4104ca1ac5d15f6c4aa49e8776cb44264a9a28dc551e0d1850dcc  compiler-gcc6.h
+2ab69ffa7940611fbaeba3f5ccca89e53530ea4603c815b329f137e717c2812e1049e29996d74f963d7d67166d1529589f6272367e77ee1e467e437661be1d12  refresh_rate.patch"
