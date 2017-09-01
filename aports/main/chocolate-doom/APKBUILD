@@ -14,11 +14,12 @@ builddir="$srcdir/${pkgname}-${pkgver}"
 build(){
 	cd "$builddir"
 	./configure --prefix=/usr
-	make || return 1
+	make
 }
 
 package() {
 	cd "$builddir"
-	make DESTDIR="$pkgdir" install || return 1
+	make DESTDIR="$pkgdir" install
 }
+
 sha512sums="43353875f76432123336ac7f8a37d00c447286f5bf17c2a12f6307568fe2533370ca8e5e0f76fa475e353f20dfdea79e3948c47ea8b079ef5dd9d0a53c305bfc  chocolate-doom-2.3.0.tar.gz"
