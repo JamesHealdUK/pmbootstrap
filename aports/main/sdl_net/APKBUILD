@@ -1,6 +1,6 @@
 pkgname=sdl_net
 pkgver=1.2.8
-pkgrel=3
+pkgrel=0
 pkgdesc="A small sample cross-platform networking library"
 url="https://www.libsdl.org/projects/SDL_net/"
 arch="all"
@@ -13,7 +13,7 @@ builddir="$srcdir/SDL_net-$pkgver"
 build() {
   cd $builddir
   ./configure --prefix=/usr --disable-static
-  make
+  make || return 1
 }
 
 package() {

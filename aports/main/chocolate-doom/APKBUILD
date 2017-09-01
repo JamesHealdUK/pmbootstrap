@@ -1,6 +1,6 @@
 pkgname=chocolate-doom
 pkgver=2.3.0
-pkgrel=3
+pkgrel=0
 pkgdesc="Historically-accurate Doom, Heretic, Hexen, and Strife ports."
 url="http://www.chocolate-doom.org/"
 arch="all"
@@ -11,14 +11,10 @@ subpackages="chocolate-doom-doc"
 source="http://chocolate-doom.org/downloads/${pkgver}/${pkgname}-${pkgver}.tar.gz"
 builddir="$srcdir/${pkgname}-${pkgver}"
 
-prepare(){
-	cd "$builddir"
-}
-
 build(){
 	cd "$builddir"
 	./configure --prefix=/usr
-	make
+	make || return 1
 }
 
 package() {
